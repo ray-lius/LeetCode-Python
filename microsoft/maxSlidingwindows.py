@@ -39,6 +39,7 @@ from collections import deque
 
 
 class Solution:
+    # O(n(n-k)) = O(n2)
     def maxSlidingWindow(self, nums: list[int], k: int) -> list[int]:
         
         if len(nums) <= k:
@@ -60,14 +61,43 @@ class Solution:
         
         return maxStack
     
+    def maxSlidingWindow2(self, nums: list[int], k: int) -> list[int]:
+
+        if len(nums) <= k:
+            return [max(nums)]
+        sw_idx = deque([])
+        result = []
+
+        left = right = 0
+        length = len(nums)
+        while right<length:
+            
+            while sw_idx and nums[sw_idx[-1]] < nums[right]:
+                sw_idx.pop()
+            
+            sw_idx.append(right)
+            
+            if left > sw_idx[0]:
+                sw_idx.popleft()
+            
+            if right+1 >= k:
+                result.append(nums[sw_idx[0]])
+                left += 1
+            right += 1
+
+        return result
     
 def test_func():
 
     solution = Solution()
     print(solution.maxSlidingWindow(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
+    print(solution.maxSlidingWindow2(nums=[1, 3, -1, -3, 5, 3, 6, 7], k=3))
 
-    solution2 = Solution()
-    print(solution2.maxSlidingWindow(nums=[1], k=1))
+    print(solution.maxSlidingWindow(nums=[1], k=1))
+    print(solution.maxSlidingWindow2(nums=[1], k=1))
+    
+    print(solution.maxSlidingWindow(nums=[5, 3, 8, 6, 2, 7, 9, 1], k=3)) #888799
+    print(solution.maxSlidingWindow2(nums=[5, 3, 8, 6, 2, 7, 9, 1], k=3))
 
 
 test_func()

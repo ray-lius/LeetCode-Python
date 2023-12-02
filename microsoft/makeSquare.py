@@ -52,8 +52,6 @@ class Solution:
                     sides[i] -= matchsticks[idx]
             return False
     
-    
-    
         return backtracking(0)
     
     

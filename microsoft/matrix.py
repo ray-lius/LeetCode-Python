@@ -51,7 +51,7 @@ class Solution:
             for d in directions:
                 nx = x+d[0]
                 ny = y+d[1]
-                if -1<nx<rows and -1< ny<len(mat[0]):
+                if -1 < nx < rows and -1 < ny < cols:
                     if record[nx][ny] <0:
                         record[nx][ny] = record[x][y] + 1
                         queue.append((nx, ny))

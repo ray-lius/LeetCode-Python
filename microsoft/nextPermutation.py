@@ -71,19 +71,17 @@ def permuation(nums: list[int]) ->list[list[int]]:
     
     comb = []
     
-    def recursor(container: list[int], nums: list[int])->None:
+    def recursor(ans: list[int], nums: list[int])->None:
         
         if not nums:
-            comb.append(container)
+            comb.append(ans[:]) # add contanier cpoy to result
             return
         
-        temp = nums[:]
-        for idx, val in enumerate(nums):
-            container.append(val)
-            temp.remove(val)
-            recursor(container[:], temp[:])
-            container.pop()
-            temp.append(val)
+        for i in range(len(nums)):
+            ans.append(nums[i])
+            recursor(ans, nums[:i] + nums[i+1:])
+            ans.pop()
+            
     recursor([], nums)
     return comb
         
