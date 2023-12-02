@@ -58,8 +58,6 @@ def solution2(S):
     operations = S.split(" ")
 
     for operation in operations:
-        if not stack:  # stack is empty
-            return -1
 
         print(stack)
         if operation == "POP":
