@@ -59,7 +59,6 @@ class Solution:
         return record
     
 
-
 def test_func():
     solution = Solution()
     print(solution.updateMatrix([[0, 0, 0], [0, 1, 0], [1, 1, 1]]))

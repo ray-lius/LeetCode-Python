@@ -57,15 +57,15 @@ class Solution:
         # return self.total
         relation = defaultdict(list)
         for i in range(n):
-            relation[manager(i)].append(i)
+            relation[manager[i]].append(i)
         
         q = deque([(headID, 0)])
         res = 0
         while q:
             i, time = q.popleft()
             res = max(res, time)
-            for emp in relation(i):
-                q.append((emp, time+informTime(i)))
+            for emp in relation[i]:
+                q.append((emp, time+informTime[i]))
             
         return res    
         
@@ -82,3 +82,5 @@ def test_func():
 
 
 test_func()
+
+    
