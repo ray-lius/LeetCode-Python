@@ -47,9 +47,32 @@ class Solution:
         return res
 
 
+def trapWater(height: list[int]):
+    if len(height) < 3:
+        return 0
+    stack = []
+    res = 0
+    for idx, val in enumerate(height):
+
+        while stack and val > height[stack[-1]]:
+            base = stack.pop()
+            if not stack:
+                break
+            l = idx - stack[-1] - 1
+            h = min(val, height[stack[-1]]) - height[base]
+            res += l*h
+
+        stack.append(idx)
+
+    return res
+
 def test_func():
 
     solution = Solution()
     print(solution.trap([0, 1, 0,2,1,0,1,3,2,1,2,1]))
+    print(solution.trap([4, 2, 0, 3, 2, 5]))
+    
+    print(trapWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+    print(trapWater([4, 2, 0, 3, 2, 5]))
     
 test_func()
