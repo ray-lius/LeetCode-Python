@@ -66,6 +66,28 @@ def trapWater(height: list[int]):
 
     return res
 
+
+def trapRainWater(height: list[int]) -> int:
+    if len(height)<3:
+        return 0
+    
+    stack = []
+    res = 0
+    for idx, val in enumerate(height):
+        
+        while stack and val>height[stack[-1]]:
+            base = stack.pop()
+            if not stack:
+                break
+            l = idx - stack[-1] - 1
+            h = min(height[stack[-1]], val) - height[base]
+            res += l * h
+        
+        stack.append(idx)
+            
+    return res
+
+
 def test_func():
 
     solution = Solution()
@@ -74,5 +96,8 @@ def test_func():
     
     print(trapWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
     print(trapWater([4, 2, 0, 3, 2, 5]))
+    
+    print(trapRainWater([0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1]))
+    print(trapRainWater([4, 2, 0, 3, 2, 5]))
     
 test_func()
