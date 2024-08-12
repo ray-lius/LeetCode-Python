@@ -91,7 +91,7 @@ def longestConsecutive3(nums: list[int]) -> int:
     nums_dict = defaultdict(int)
     maxLength = 0
     
-    for idx, num in enumerate(nums):
+    for num in enumerate(nums):
         print(nums_dict)
         if nums_dict[num] == 0:
             left, right, sum = 0, 0 , 0

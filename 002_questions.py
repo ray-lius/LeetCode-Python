@@ -34,6 +34,7 @@ solution 2:
     
 # last practice on 06 Aug 2024
 
+
 """
 Given an integer array nums, return the length of the longest strictly increasing 
 subsequence
